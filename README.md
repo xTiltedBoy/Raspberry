@@ -15,9 +15,11 @@ sudo apt-get update && sudo apt-get install -y \
      apt-transport-https \
      ca-certificates \
      curl \
+     gnupg \
      software-properties-common \
      fail2ban \
      ntfs-3g \
+     lsb-release
      linux-modules-extra-raspi \
      rsnapshot
 ```
@@ -32,22 +34,22 @@ sudo apt-get update && sudo apt-get install -y \
 ### 5. Instalar firmas GPG del repo de Docker
 
 ```
-curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
-sudo apt-key fingerprint 0EBFCD88
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
 ```
 
 ### 6. Agregar repo de Docker
 
 ```
-echo "deb [arch=armhf] https://download.docker.com/linux/debian \
-     $(lsb_release -cs) stable" | \
-    sudo tee /etc/apt/sources.list.d/docker.list
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 ```
 
 ### 7. Instalar Docker
 
 ```
-sudo apt-get update && sudo apt-get install -y --no-install-recommends docker-ce docker-compose
+sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose
 ```
 
 ### 8. Agregar usuario al grupo docker y desloguearse y volverse a loguear
