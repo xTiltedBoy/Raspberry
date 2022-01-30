@@ -19,7 +19,7 @@ sudo apt-get update && sudo apt-get install -y \
      software-properties-common \
      fail2ban \
      ntfs-3g \
-     lsb-release
+     lsb-release \
      linux-modules-extra-raspi \
      rsnapshot
 ```
