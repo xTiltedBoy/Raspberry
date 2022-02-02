@@ -81,10 +81,9 @@ sudo chown <usuario> /mnt/* -R
 
 ### 10. Crear docker-compose
 ```
-version: "3.9"
+version: "3.3"
 
 services:
-
   apache:
     image: php:7.4.25-apache-buster
     ports:
@@ -97,7 +96,7 @@ services:
   samba:
     image: dperson/samba:rpi
     restart: always
-    command: '-u "usuario;contraseña" -s "public;/media;no;no"'
+    command: '-u "xtiltedboy;raspiserver" -s "public;/media;no;no"'
     stdin_open: true
     tty: true
     ports:
@@ -114,34 +113,24 @@ services:
     restart: always
     network_mode: "host"
 
-  pihole:
-    image: pihole/pihole:latest
-    environment:
-      TZ: "Europe/Madrid"
-      WEBPASSWORD: "contraseña"
+  portainer:
+    image: portainer/portainer
+    ports:
+      - "9000:9000"
+    restart: always
     volumes:
-      - /mnt/datos/pihole/etc-pihole:/etc/pihole
-      - /mnt/datos/pihole/etc-dnsmasq.d:/etc/dnsmasq.d
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-      - 1.1.1.1
-    cap_add:
-      - NET_ADMIN
-    restart: unless-stopped
-    networks:
-      lan:
-        ipv4_address: 192.168.0.200
+      - /var/run/docker.sock:/var/run/docker.sock
 
-networks:
-  lan:
-    driver: macvlan
-    driver_opts:
-      parent: eth0
-    ipam:
-      config:
-        - subnet: "192.168.0.0/24"
-          gateway: "192.168.0.1"
+  rsnapshot:
+    image: lscr.io/linuxserver/rsnapshot
+    container_name: rsnapshot
+    environment:
+      - TZ=Europe/Madrid
+    volumes:
+      - /mnt/datos/rsnapshot/config:/config
+      - /mnt/backups/snapshots:/.snapshots #optional
+      - /mnt/datos:/data #optional
+    restart: unless-stopped
 ```
 
 
