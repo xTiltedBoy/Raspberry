@@ -85,6 +85,7 @@ version: "3.3"
 
 services:
   apache:
+    container_name: Apache
     image: php:7.4.25-apache-buster
     ports:
       - "80:80"
@@ -94,6 +95,7 @@ services:
       - /mnt/datos/Apache:/var/www/html
 
   samba:
+    container_name: Samba
     image: dperson/samba:rpi
     restart: always
     command: '-u "usuario;contraseña" -s "public;/media;no;no"'
@@ -106,6 +108,7 @@ services:
       - /mnt/datos/Samba/media:/media
 
   plex:
+    container_name: Plex
     image: jaymoulin/plex:1.24.5.5173-arm64v8
     volumes:
       - /mnt/datos/Plex/Series:/Plex/Series
@@ -114,6 +117,7 @@ services:
     network_mode: "host"
 
   portainer:
+    container_name: Portainer
     image: portainer/portainer
     ports:
       - "9000:9000"
@@ -122,8 +126,8 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
 
   rsnapshot:
+    container_name: Rsnapshot
     image: lscr.io/linuxserver/rsnapshot
-    container_name: rsnapshot
     environment:
       - TZ=Europe/Madrid
     volumes:
