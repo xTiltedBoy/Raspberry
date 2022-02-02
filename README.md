@@ -96,7 +96,7 @@ services:
   samba:
     image: dperson/samba:rpi
     restart: always
-    command: '-u "xtiltedboy;raspiserver" -s "public;/media;no;no"'
+    command: '-u "usuario;contraseña" -s "public;/media;no;no"'
     stdin_open: true
     tty: true
     ports:
