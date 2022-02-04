@@ -20,8 +20,7 @@ sudo apt-get update && sudo apt-get install -y \
      fail2ban \
      ntfs-3g \
      lsb-release \
-     linux-modules-extra-raspi \
-     rsnapshot
+     linux-modules-extra-raspi
 ```
 
 ### 4. Programar los reinicios:
