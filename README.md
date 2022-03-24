@@ -1,4 +1,4 @@
-# Configuración Raspberry
+# Configuración Raspberry Pi
 
 ### 1. Descargar e instalar Ubuntu en tu micro SD:
    * Descargar la imagen (Ubuntu 20.04.4 LTS) https://cutt.ly/aSKwiHr
