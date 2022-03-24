@@ -2,7 +2,7 @@
 
 ### 1. Descargar e instalar Ubuntu en tu micro SD:
    * Descargar la imagen (Ubuntu 20.04.4 LTS) https://cutt.ly/aSKwiHr
-   * Entrar a https://www.balena.io/etcher/ y te descargas el programa
+   * Entrar a https://www.balena.io/etcher/ y descargar el programa
    * Seleccionar el SO, la SD y la flasheas
   
 ### 2. Una vez que Ubuntu está instalado:
